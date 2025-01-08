@@ -33,4 +33,4 @@ fig_freefallin = df %>%
   ylab("Vélocité (m/s)") +
   theme_bw(16)
 
-ggsave(filename = "fig_freefallin.png", fig_freefallin)
+ggsave("outputs/figs/fig_freefallin.png", fig_freefallin)
