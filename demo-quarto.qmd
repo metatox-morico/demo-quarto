@@ -39,7 +39,7 @@ Code pour générer une figure et l'exporter
 fig_LC50_Kow_reg = df %>% 
   ggplot(aes(x = logKow, y = log_inv_LC50)) +
   geom_point(alpha = .3, size = 3) +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "loess") +
   xlab("log(Kow)") + ylab("log(1/LC50)")
 fig_LC50_Kow_reg
 
