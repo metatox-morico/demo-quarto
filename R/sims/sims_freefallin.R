@@ -11,8 +11,8 @@ g = 9.81 # constante gravitationelle
 c = 12.5 # 
 t = 0:10
 
-# Parachutiste de 40 à 120 kg
-m_range = c(40:120)
+# Parachutiste de 40 à 400 kg
+m_range = c(40:400)
 
 # appliquer la fonction pour chaque valeur de paramètre
 # Stocker chaque vélocité dans liste
