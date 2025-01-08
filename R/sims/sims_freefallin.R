@@ -11,8 +11,8 @@ g = 9.81 # constante gravitationelle
 c = 12.5 # 
 t = 0:10
 
-# Parachutiste de 40 à 400 kg
-m_range = c(40:400)
+# Parachutiste de 40 à 120 kg
+m_range = c(40:120)
 
 # appliquer la fonction pour chaque valeur de paramètre
 # Stocker chaque vélocité dans liste
@@ -24,7 +24,7 @@ df = data.frame(
   v = unlist(out) # vélositées mises bout à bout
   )
 
-df %>% 
+fig_freefallin = df %>% 
   ggplot(aes(x = t, y = v, group = m, color = m)) +
   geom_point() +
   geom_line() +
@@ -32,4 +32,5 @@ df %>%
   xlab("Temps (s)") +
   ylab("Vélocité (m/s)") +
   theme_bw(16)
-  
+
+ggsave("outputs/figs/fig_freefallin.png", fig_freefallin)
