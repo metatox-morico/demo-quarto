@@ -24,7 +24,7 @@ df = data.frame(
   v = unlist(out) # vélositées mises bout à bout
   )
 
-df %>% 
+fig_freefallin = df %>% 
   ggplot(aes(x = t, y = v, group = m, color = m)) +
   geom_point() +
   geom_line() +
@@ -32,4 +32,5 @@ df %>%
   xlab("Temps (s)") +
   ylab("Vélocité (m/s)") +
   theme_bw(16)
-  
+
+ggsave(filename = "fig_freefallin.png", fig_freefallin)
