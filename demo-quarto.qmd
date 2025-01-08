@@ -1,0 +1,48 @@
+---
+title: "demo-quarto"
+---
+
+## Quarto
+
+Packages et options globales
+```{r}
+library(tidyverse); library(easystats)
+theme_set(theme_bw(14))
+
+```
+
+
+#### Titre
+
+Simuler des données
+
+```{r}
+n_compo = 1000 # nombre de composés
+logKow = rnorm(n_compo, 2, 1)  # vecteur de Kow
+b0 = -4 # Ordonnée à l'origine
+b1 = .9 # Pente
+sigma = .25 # variance résiduelle
+
+log_inv_LC50 = rnorm(n_compo, b0 + b1 * logKow, sigma)
+
+df = data.frame( # stockage
+  logKow = logKow,
+  log_inv_LC50 = log_inv_LC50
+) 
+
+plot(log_inv_LC50 ~ logKow, df)
+```
+
+Code pour générer une figure et l'exporter
+
+```{r}
+fig_LC50_Kow_reg = df %>% 
+  ggplot(aes(x = logKow, y = log_inv_LC50)) +
+  geom_point(alpha = .3, size = 3) +
+  geom_smooth(method = "lm") +
+  xlab("log(Kow)") + ylab("log(1/LC50)")
+fig_LC50_Kow_reg
+
+ggsave("outputs/figs/fig_LC50_Kow_reg.png", fig_LC50_Kow_reg)
+
+```
