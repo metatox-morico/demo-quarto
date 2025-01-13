@@ -21,7 +21,9 @@ n_compo = 1000 # nombre de composés
 logKow = rnorm(n_compo, 2, 1)  # vecteur de Kow
 b0 = -4 # Ordonnée à l'origine
 b1 = .9 # Pente
-sigma = .25 # variance résiduelle
+
+sigma = .5 # variance résiduelle
+beta = 7
 
 log_inv_LC50 = rnorm(n_compo, b0 + b1 * logKow, sigma)
 
@@ -39,7 +41,7 @@ Code pour générer une figure et l'exporter
 fig_LC50_Kow_reg = df %>% 
   ggplot(aes(x = logKow, y = log_inv_LC50)) +
   geom_point(alpha = .3, size = 3) +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "loess") +
   xlab("log(Kow)") + ylab("log(1/LC50)")
 fig_LC50_Kow_reg
 
